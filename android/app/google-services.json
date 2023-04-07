@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "1099073623189",
+    "firebase_url": "https://vjti-previous-years-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "vjti-previous-years",
+    "storage_bucket": "vjti-previous-years.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099073623189:android:ee7e807f79e30b19b8379c",
+        "android_client_info": {
+          "package_name": "com.example.vjti_previous"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1099073623189-t5d0r48lq6mnb8snedkd5tsp44uclagv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOPGpqZujqkfV8lST0N9bQYzTLzF5ymvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1099073623189-0ldb9luv1iunrb4ljirei8tmrqe836os.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1099073623189-pk8mvos1tkji85g0bdmed76uc9osf7hb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vjtiPreviousYears"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099073623189:android:c3b60cc71aab14c2b8379c",
+        "android_client_info": {
+          "package_name": "com.example.vjti_previous_years"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1099073623189-t5d0r48lq6mnb8snedkd5tsp44uclagv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOPGpqZujqkfV8lST0N9bQYzTLzF5ymvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1099073623189-0ldb9luv1iunrb4ljirei8tmrqe836os.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1099073623189-pk8mvos1tkji85g0bdmed76uc9osf7hb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vjtiPreviousYears"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
