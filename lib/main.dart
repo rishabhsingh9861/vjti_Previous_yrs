@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vjti_previous/authenticate/auth_page.dart';
 import 'package:vjti_previous/degree/all_yearDegree.dart';
 import 'package:vjti_previous/degree/departments.dart';
+import 'package:vjti_previous/degree/test.dart';
 import 'package:vjti_previous/diploma/allYearDiploma.dart';
 import 'package:vjti_previous/forgot_password.dart';
 import 'package:vjti_previous/home_page.dart';

@@ -14,6 +14,9 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+  bool loading = false;
+ 
+
   void signUserIn() {
     showDialog(
         context: context,

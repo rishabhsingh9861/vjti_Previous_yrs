@@ -12,9 +12,10 @@ class forgotPassword extends StatefulWidget {
 }
 
 class _forgotPasswordState extends State<forgotPassword> {
+  
   final _emailController = TextEditingController();
 
- @override
+  @override
   void dispose() {
     _emailController.dispose();
 
@@ -24,7 +25,7 @@ class _forgotPasswordState extends State<forgotPassword> {
   Future passwordReset() async {
     try {
       await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailController.text.trim());
+          .sendPasswordResetEmail(email: _emailController.text.toString());
       showDialog(
           context: context,
           builder: (context) {
@@ -33,11 +34,11 @@ class _forgotPasswordState extends State<forgotPassword> {
                   Text('Password reset link sent sucessfullycheck your email'),
             );
           }).then((value) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const login()),
-                        );
-                      });
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const login()),
+        );
+      });
     } on FirebaseAuthException catch (e) {
       showDialog(
           context: context,
@@ -52,14 +53,18 @@ class _forgotPasswordState extends State<forgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 241, 233, 184),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: Text(
-              "enter the email for password reset",
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              "Enter the email for password reset",
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -71,8 +76,10 @@ class _forgotPasswordState extends State<forgotPassword> {
             child: TextFormField(
               decoration: InputDecoration(
                   labelText: "Email",
-                  labelStyle:
-                      const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  labelStyle: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(color: Colors.white)),
@@ -93,7 +100,7 @@ class _forgotPasswordState extends State<forgotPassword> {
           ),
           MaterialButton(
             onPressed: passwordReset,
-            color: Colors.deepPurple,
+            color: const Color.fromARGB(255, 168, 134, 227),
             child: const Text("Reset Button"),
           )
         ],

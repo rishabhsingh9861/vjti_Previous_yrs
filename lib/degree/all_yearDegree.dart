@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vjti_previous/degree/departments.dart';
 import 'package:vjti_previous/degree/getYearDegree.dart';
+import 'package:vjti_previous/degree/test.dart';
 import 'package:vjti_previous/utilities/routes.dart';
 
 class allYearDegree extends StatefulWidget {
@@ -82,10 +83,12 @@ class _allYearDegreeState extends State<allYearDegree> {
                         padding: const EdgeInsets.all(20.0),
                         child: InkWell(
                           onTap: () {
-                           // print(docIds[index]);
+                            // print(docIds[index]);
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (_) {
-                              return departments(
+                              return 
+                              //Test();
+                             departments(
                                 dept: docIds[index],
                               );
                             }));
