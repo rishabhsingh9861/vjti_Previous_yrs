@@ -1,40 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/fypapersem2.dart';
 
-class FyPaper extends StatefulWidget {
-  const FyPaper({super.key, this.subid});
- final  String? subid;
+class Sem2paper extends StatefulWidget {
+ const Sem2paper({super.key, this.subid});
+ final String? subid;
 
   @override
-  State<FyPaper> createState() => _FyPaperState();
+  State<Sem2paper> createState() => _Sem2paperState();
 }
 
-class _FyPaperState extends State<FyPaper> {
+class _Sem2paperState extends State<Sem2paper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text(
-          'MST [Sem1]',
+          'MST [Sem2]',
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
               fontStyle: FontStyle.italic),
-        ),
+        ), 
         actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const Sem2paper();
-                }));
-              },
-              child: const Text("SEM2",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      fontStyle: FontStyle.italic)))
+          TextButton(onPressed: (){}, child: const Text("SEM1" , style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              fontStyle: FontStyle.italic)))
         ],
       ),
       body: Column(

@@ -89,7 +89,7 @@ class _allYearDegreeState extends State<allYearDegree> {
                               return 
                               //Test();
                              departments(
-                                dept: docIds[index],
+                                dept: docIds[index] , degreeId:docIds[index],
                               );
                             }));
                           },

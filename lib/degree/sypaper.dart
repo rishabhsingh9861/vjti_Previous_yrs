@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:vjti_previous/degree/fypapersem2.dart';
 
-class FyPaper extends StatefulWidget {
-  const FyPaper({super.key, this.subid});
- final  String? subid;
+class SyPaper extends StatefulWidget {
+ const  SyPaper({super.key, this.subid});
+final  String? subid;
 
   @override
-  State<FyPaper> createState() => _FyPaperState();
+  State<SyPaper> createState() => _SyPaperState();
 }
 
-class _FyPaperState extends State<FyPaper> {
+class _SyPaperState extends State<SyPaper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
