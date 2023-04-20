@@ -1,70 +1,101 @@
+// here we are viewing mst paper of first year
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/fypapersem2.dart';
+import 'package:vjti_previous/degree/viewfymst.dart';
 
 class FyPaper extends StatefulWidget {
-  const FyPaper({super.key, this.subid});
- final  String? subid;
+  FyPaper({super.key, this.subid});
+  final String? subid;
+  // final String? msturl;
+  // final String? eseurl;
 
   @override
   State<FyPaper> createState() => _FyPaperState();
 }
 
 class _FyPaperState extends State<FyPaper> {
+  final gsReference = FirebaseStorage.instance;
+  List<String> pdfurl = [];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: const Text(
-          'MST [Sem1]',
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-              fontStyle: FontStyle.italic),
-        ),
-        actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const Sem2paper();
-                }));
-              },
-              child: const Text("SEM2",
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('Degree')
+          .doc('FirstYear')
+          .collection('Subjects')
+          .doc(widget.subid)
+          .collection('mst')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: Colors.black,
+            appBar: AppBar(
+              title: const Center(
+                child: Text(
+                  'MST',
                   style: TextStyle(
-                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
-                      fontStyle: FontStyle.italic)))
-        ],
-      ),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.blueGrey,
-            height: 350,
-            width: MediaQuery.of(context).size.width,
-          ),
-          Container(
-            color: Colors.orange,
-            height: 50,
-            width: MediaQuery.of(context).size.width,
-            child: const Center(
-              child: Text(
-                'ESE',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    fontStyle: FontStyle.italic),
+                      fontStyle: FontStyle.italic),
+                ),
               ),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("ESE",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            fontStyle: FontStyle.italic)))
+              ],
             ),
-          ),
-          Container(
-            color: Colors.green,
-            height: 350,
-            width: MediaQuery.of(context).size.width,
-          )
-        ],
-      ),
+            body: ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                String a = snapshot.data!.docs[index].id;
+
+                final mstpaper =
+                    snapshot.data!.docs[index].data() as Map<String, dynamic>;
+
+                String url = '${mstpaper['url']}';
+                pdfurl.add(url);
+
+                return Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ViewFyMst( pdfurl: pdfurl[index],);
+                      }));
+                    },
+                    child: Card(
+                      color: const Color.fromARGB(255, 66, 90, 228),
+                      child: Text(
+                        url,
+                        style: const TextStyle(
+                            // color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }

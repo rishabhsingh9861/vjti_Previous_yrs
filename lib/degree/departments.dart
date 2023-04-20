@@ -15,12 +15,9 @@ class departments extends StatefulWidget {
 }
 
 class _departmentsState extends State<departments> {
- 
-
   late CollectionReference reference;
   List<String> sub = [];
   List<String> priya = [];
-  String? pankaj;
 
   @override
   void initState() {
@@ -45,7 +42,6 @@ class _departmentsState extends State<departments> {
         stream: reference.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-        
             return Scaffold(
               backgroundColor: Colors.black,
               appBar: AppBar(
@@ -59,19 +55,25 @@ class _departmentsState extends State<departments> {
                   itemCount: snapshot.data!.docs.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    sub.add(snapshot.data!.docs[index].id);
+                    sub.add(snapshot.data!.docs[index].id); // subject id
                     final getdata = snapshot.data!.docs[index].data()
                         as Map<String, dynamic>;
                     if (widget.dept == "FirstYear") {
                       String rishabh = '${getdata['Subject']}';
-                      priya.add(rishabh);
+
+                      priya.add(rishabh); // subject data
+
                       return Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: InkWell(
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (_) {
-                              return const FyPaper();
+                             // print(sub);
+                              //print(priya);
+                              return FyPaper(
+                                subid: sub[index],
+                              );
                             }));
                           },
                           child: Card(

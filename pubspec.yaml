@@ -41,6 +41,9 @@ dependencies:
   cloud_firestore: ^4.4.5
   google_fonts: ^4.0.3
   firebase_database: ^10.0.16
+  syncfusion_flutter_pdfviewer: ^21.1.35
+  
+ 
 
 dev_dependencies:
   flutter_test:

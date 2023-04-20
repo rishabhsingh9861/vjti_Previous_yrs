@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class DeptSubjects extends StatefulWidget {
- const DeptSubjects({super.key, this.departId, this.degreeIds});
- final String? departId;
- final String? degreeIds;
+  const DeptSubjects({super.key, this.departId, this.degreeIds});
+  final String? departId;
+  final String? degreeIds;
 
   @override
   State<DeptSubjects> createState() => _DeptSubjectsState();
@@ -23,7 +23,6 @@ class _DeptSubjectsState extends State<DeptSubjects> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-           
             return Scaffold(
               backgroundColor: Colors.black,
               appBar: AppBar(
