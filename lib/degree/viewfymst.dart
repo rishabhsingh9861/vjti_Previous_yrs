@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ViewFyMst extends StatefulWidget {
-  ViewFyMst({this.pdfurl});
+  const ViewFyMst({super.key, this.pdfurl, this.paperyear});
   final String? pdfurl;
+  final String? paperyear;
 
   @override
   State<ViewFyMst> createState() => _ViewFyMstState();
@@ -14,13 +15,12 @@ class _ViewFyMstState extends State<ViewFyMst> {
 
   @override
   Widget build(BuildContext context) {
+   // print(widget.paperyear);
     return Scaffold(
-  
       appBar: AppBar(
-        title: Text('pdf'),
+        title: Text(widget.paperyear.toString()),
       ),
       body: SfPdfViewer.network(
-        
         widget.pdfurl.toString(),
         controller: _pdfViewerController,
       ),

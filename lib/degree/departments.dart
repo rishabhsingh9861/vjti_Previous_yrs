@@ -2,8 +2,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/fypaper.dart';
-import 'package:vjti_previous/degree/subject.dart';
+import 'package:vjti_previous/degree/fy_mst.dart';
+import 'package:vjti_previous/degree/sytyfy_semester.dart';
 
 class departments extends StatefulWidget {
   departments({super.key, this.dept, this.degreeId});
@@ -18,6 +18,7 @@ class _departmentsState extends State<departments> {
   late CollectionReference reference;
   List<String> sub = [];
   List<String> priya = [];
+  List<String> departmentname = [];
 
   @override
   void initState() {
@@ -69,8 +70,6 @@ class _departmentsState extends State<departments> {
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (_) {
-                             // print(sub);
-                              //print(priya);
                               return FyPaper(
                                 subid: sub[index],
                               );
@@ -87,8 +86,10 @@ class _departmentsState extends State<departments> {
                         ),
                       );
                     } else {
+                      String ankit = snapshot.data!.docs[index].id;
                       String rishabh = '${getdata['Dept']}';
-                      priya.add(rishabh);
+                      priya.add(ankit);
+                      departmentname.add(rishabh);
 
                       return Padding(
                         padding: const EdgeInsets.all(20.0),
@@ -99,9 +100,10 @@ class _departmentsState extends State<departments> {
                             // print(snapshot.data!.docs[index].data()["Subject"]);
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (_) {
-                              return DeptSubjects(
+                              return SyTyFySemester(
+                                departname: departmentname[index],
                                 departId: priya[index],
-                                degreeIds: widget.dept,
+                                degreeIds: widget.dept, // year list is there
                               );
                             }));
                           },

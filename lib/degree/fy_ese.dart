@@ -1,21 +1,24 @@
-// here we are viewing mst paper of first year
+// ignore: file_names
+// here we are viewing ese paper of first year
+
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:vjti_previous/degree/viewfymst.dart';
 
-class FyPaper extends StatefulWidget {
-  FyPaper({super.key, this.subid});
+class FyPaperEse extends StatefulWidget {
+  const FyPaperEse({super.key, this.subid});
   final String? subid;
   // final String? msturl;
   // final String? eseurl;
 
   @override
-  State<FyPaper> createState() => _FyPaperState();
+  State<FyPaperEse> createState() => _FyPaperEseState();
 }
 
-class _FyPaperState extends State<FyPaper> {
+class _FyPaperEseState extends State<FyPaperEse> {
   final gsReference = FirebaseStorage.instance;
   List<String> pdfurl = [];
 
@@ -27,7 +30,7 @@ class _FyPaperState extends State<FyPaper> {
           .doc('FirstYear')
           .collection('Subjects')
           .doc(widget.subid)
-          .collection('mst')
+          .collection('ese')
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -36,23 +39,14 @@ class _FyPaperState extends State<FyPaper> {
             appBar: AppBar(
               title: const Center(
                 child: Text(
-                  'MST',
+                  'ESE',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
                       fontStyle: FontStyle.italic),
                 ),
               ),
-              actions: [
-                ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("ESE",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            fontStyle: FontStyle.italic)))
-              ],
+           
             ),
             body: ListView.builder(
               itemCount: snapshot.data!.docs.length,
@@ -60,10 +54,11 @@ class _FyPaperState extends State<FyPaper> {
               itemBuilder: (context, index) {
                 String a = snapshot.data!.docs[index].id;
 
-                final mstpaper =
+                final esepaper =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;
 
-                String url = '${mstpaper['url']}';
+                String url = '${esepaper['url']}';
+                String paperyear = '${esepaper['year']}';
                 pdfurl.add(url);
 
                 return Padding(
@@ -72,17 +67,21 @@ class _FyPaperState extends State<FyPaper> {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return ViewFyMst( pdfurl: pdfurl[index],);
+                        return ViewFyMst(
+                          pdfurl: pdfurl[index],
+                        );
                       }));
                     },
                     child: Card(
                       color: const Color.fromARGB(255, 66, 90, 228),
-                      child: Text(
-                        url,
-                        style: const TextStyle(
-                            // color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
+                      child: Center(
+                        child: Text(
+                          paperyear,
+                          style: const TextStyle(
+                              // color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 35),
+                        ),
                       ),
                     ),
                   ),

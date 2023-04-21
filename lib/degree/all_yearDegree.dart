@@ -7,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vjti_previous/degree/departments.dart';
 import 'package:vjti_previous/degree/getYearDegree.dart';
-import 'package:vjti_previous/degree/test.dart';
 import 'package:vjti_previous/utilities/routes.dart';
 
 class allYearDegree extends StatefulWidget {
@@ -52,26 +51,7 @@ class _allYearDegreeState extends State<allYearDegree> {
           SizedBox(
             height: 30,
           ),
-          // StreamBuilder<QuerySnapshot>(
-          //   stream: firestore,
-          //   builder:
-          //       (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          //     if (snapshot.connectionState == ConnectionState.waiting) {
-          //       return Center(child: CircularProgressIndicator());
-          //     }
-          //     if (snapshot.hasError) return Text('Some Error');
-          //     return Expanded(
-          //       child: ListView.builder(
-          //           itemCount: snapshot.data!.docs.length,
-          //           itemBuilder: (context, Index) {
-          //             return ListTile(
-          //               title:
-          //                   Text(snapshot.data!.docs[Index]["Year"].toString()),
-          //             );
-          //           }),
-          //     );
-          //   },
-          // ),
+         
           Expanded(
             child: FutureBuilder(
               future: getDocId(),
