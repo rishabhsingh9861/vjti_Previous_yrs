@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/sem_3subject.dart';
+import 'package:vjti_previous/degree/sem_subject.dart';
 
 class SyTyFySemester extends StatefulWidget {
   const SyTyFySemester(
@@ -28,13 +28,13 @@ class _SyTyFySemesterState extends State<SyTyFySemester> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
-              backgroundColor: Colors.black,
               appBar: AppBar(
+                centerTitle: true,
                 title: Text('${widget.departname}',
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                        fontStyle: FontStyle.italic)),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26,
+                    )),
               ),
               body: ListView.builder(
                   itemCount: snapshot.data!.docs.length,
@@ -44,16 +44,16 @@ class _SyTyFySemesterState extends State<SyTyFySemester> {
 
                     final semester = snapshot.data!.docs[index].data()
                         as Map<String, dynamic>;
-                    String sem = '${semester['Semester']}';
+                    String sem = '  ${semester['Semester']}';
                     semIds.add(semid);
 
                     return Column(
                       children: [
-                        SizedBox(
-                          height: 50,
+                        const SizedBox(
+                          height: 80,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(100),
+                          padding: const EdgeInsets.all(10),
                           child: InkWell(
                             onTap: () {
                               Navigator.push(context,
@@ -66,16 +66,20 @@ class _SyTyFySemesterState extends State<SyTyFySemester> {
                                 );
                               }));
                             },
-                            child: Center(
-                              child: Card(
-                                color: const Color.fromARGB(255, 66, 90, 228),
+                            child: Container(
+                              height: 40,
+                              width: 160,
+                              decoration: BoxDecoration(
+                                  color: const Color.fromARGB(255, 149, 223, 225),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 5),
                                 child: Text(
                                   // '${ridhima['Subject']}',
                                   sem,
 
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 50),
+                                  style: const TextStyle(fontSize: 26),
                                 ),
                               ),
                             ),

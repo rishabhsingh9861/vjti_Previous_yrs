@@ -15,14 +15,16 @@ class _ViewFyMstState extends State<ViewFyMst> {
 
   @override
   Widget build(BuildContext context) {
-   // print(widget.paperyear);
+    // print(widget.paperyear);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.paperyear.toString()),
+        actions: [],
       ),
       body: SfPdfViewer.network(
         widget.pdfurl.toString(),
         controller: _pdfViewerController,
+        enableDocumentLinkAnnotation: false,
       ),
     );
   }

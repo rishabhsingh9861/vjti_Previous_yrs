@@ -6,9 +6,10 @@ import 'package:vjti_previous/degree/fy_mst.dart';
 import 'package:vjti_previous/degree/sytyfy_semester.dart';
 
 class departments extends StatefulWidget {
-  departments({super.key, this.dept, this.degreeId});
+  departments({super.key, this.dept, this.degreeId, this.degreedata});
   String? dept;
   String? degreeId;
+  String? degreedata;
 
   @override
   State<departments> createState() => _departmentsState();
@@ -39,18 +40,19 @@ class _departmentsState extends State<departments> {
 
   @override
   Widget build(BuildContext context) {
+    
     return StreamBuilder<QuerySnapshot>(
         stream: reference.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
-              backgroundColor: Colors.black,
               appBar: AppBar(
-                title: Text('Degree' ' ${[widget.dept]}',
+                centerTitle: true,
+                title: Text('Degree' ' ${[widget.degreedata]}',
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        fontStyle: FontStyle.italic)),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    )),
               ),
               body: ListView.builder(
                   itemCount: snapshot.data!.docs.length,
@@ -60,7 +62,7 @@ class _departmentsState extends State<departments> {
                     final getdata = snapshot.data!.docs[index].data()
                         as Map<String, dynamic>;
                     if (widget.dept == "FirstYear") {
-                      String rishabh = '${getdata['Subject']}';
+                      String rishabh = '  ${getdata['Subject']}';
 
                       priya.add(rishabh); // subject data
 
@@ -75,19 +77,25 @@ class _departmentsState extends State<departments> {
                               );
                             }));
                           },
-                          child: Card(
-                            color: const Color.fromARGB(255, 66, 90, 228),
-                            child: Text(
-                              rishabh,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
+                          child: Container(
+                            height: 40,
+                            width: 250,
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 149, 223, 225),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: Text(
+                                rishabh,
+                                style: const TextStyle(fontSize: 24),
+                              ),
                             ),
                           ),
                         ),
                       );
                     } else {
                       String ankit = snapshot.data!.docs[index].id;
-                      String rishabh = '${getdata['Dept']}';
+                      String rishabh = '  ${getdata['Dept']}';
                       priya.add(ankit);
                       departmentname.add(rishabh);
 
@@ -107,14 +115,20 @@ class _departmentsState extends State<departments> {
                               );
                             }));
                           },
-                          child: Card(
-                            color: Colors.indigo,
-                            child: Text(
-                              rishabh,
+                          child: Container(
+                            height: 40,
+                            width: 250,
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 149, 223, 225),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: Text(
+                                rishabh,
 
-                              // priya.toString() ,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
+                                // priya.toString() ,
+                                style: const TextStyle(fontSize: 24),
+                              ),
                             ),
                           ),
                         ),

@@ -24,45 +24,62 @@ class _homePageState extends State<homePage> {
   Widget build(BuildContext context) {
     return FadeInDown(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          centerTitle: true,
           title: const Text('VJTI PREVIOUS YEARS'),
           actions: [
             IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
           ],
         ),
-        drawer: myDrawer(),
-        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        drawer: const myDrawer(),
+        body: Column(children: [
           const SizedBox(
-            height: 25,
+            height: 100,
           ),
           Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, MyRoutes.allYearDegree);
-                },
-                child: const Text(
-                  "DEGREE",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
+            child: Container(
+              height: 80,
+              width: 350,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 149, 223, 225),
+                  borderRadius: BorderRadius.circular(15)),
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, MyRoutes.allYearDegree);
+                  },
+                  child: const Text(
+                    "DEGREE",
+                    style: TextStyle(
+                      color: Colors.black,
+                      // fontWeight: FontWeight.bold,
                       fontSize: 60,
-                      fontStyle: FontStyle.italic),
-                )),
+                    ),
+                  )),
+            ),
           ),
           const SizedBox(
-            height: 150,
+            height: 100,
           ),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, MyRoutes.allYearDiploma);
-              },
-              child: const Text(
-                "DIPLOMA",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
+          Container(
+            height: 80,
+            width: 350,
+            decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 149, 223, 225),
+                borderRadius: BorderRadius.circular(15)),
+            child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, MyRoutes.allYearDiploma);
+                },
+                child: const Text(
+                  "DIPLOMA",
+                  style: TextStyle(
+                    color: Colors.black,
+                    // fontWeight: FontWeight.bold,
                     fontSize: 60,
-                    fontStyle: FontStyle.italic),
-              )),
+                  ),
+                )),
+          ),
         ]),
       ),
     );

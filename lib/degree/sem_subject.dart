@@ -19,8 +19,6 @@ class _Sem3SubjectState extends State<Sem3Subject> {
   List<String> subjectsem3ids = []; // contains sem3  subject ids
   @override
   Widget build(BuildContext context) {
-    
-    // print(widget.semIds);
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('Degree')
@@ -34,13 +32,11 @@ class _Sem3SubjectState extends State<Sem3Subject> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
-              backgroundColor: Colors.black,
               appBar: AppBar(
-                title: Text('${widget.departname}' + '(${widget.semIds})',
+                title: Text('${widget.departname}' '(${widget.semIds})',
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        fontStyle: FontStyle.italic)),
+                      fontSize: 24,
+                    )),
               ),
               body: ListView.builder(
                   itemCount: snapshot.data!.docs.length,
@@ -51,7 +47,7 @@ class _Sem3SubjectState extends State<Sem3Subject> {
 
                     final subjectsem3 = snapshot.data!.docs[index].data()
                         as Map<String, dynamic>;
-                    String sub = '${subjectsem3['Subject']}';
+                    String sub = '  ${subjectsem3['Subject']}';
                     subjectssem3.add(sub);
 
                     return Padding(
@@ -68,12 +64,18 @@ class _Sem3SubjectState extends State<Sem3Subject> {
                             );
                           }));
                         },
-                        child: Card(
-                          color: const Color.fromARGB(255, 66, 90, 228),
-                          child: Text(
-                            sub,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 30),
+                        child: Container(
+                          height: 40,
+                          width: 160,
+                          decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 149, 223, 225),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: Text(
+                              sub,
+                              style: const TextStyle(fontSize: 24),
+                            ),
                           ),
                         ),
                       ),

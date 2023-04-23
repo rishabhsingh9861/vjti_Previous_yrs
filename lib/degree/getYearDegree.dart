@@ -24,25 +24,12 @@ class getYearDegree extends StatelessWidget {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
             //  print(data);
-            return Center(
-              child: Text(
-                '${data['Year']}',
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
-              ),
+            return Text(
+              '  ${data['Year']}',
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
             );
           }
           return const CircularProgressIndicator();
         }));
   }
 }
-
-
-
-
-
-
-
-
-
-

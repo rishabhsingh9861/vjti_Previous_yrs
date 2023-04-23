@@ -2,12 +2,15 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/fy_ese.dart';
 import 'package:vjti_previous/degree/viewfymst.dart';
 
 class SyTyFyEsePaper extends StatefulWidget {
   const SyTyFyEsePaper(
-      {super.key, this.subjectid, this.yearsids, this.departsids, this.semestids});
+      {super.key,
+      this.subjectid,
+      this.yearsids,
+      this.departsids,
+      this.semestids});
   final String? subjectid;
   final String? yearsids;
   final String? departsids;
@@ -25,7 +28,6 @@ class _SyTyFyEsePaperState extends State<SyTyFyEsePaper> {
 
   @override
   Widget build(BuildContext context) {
-
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('Degree')
@@ -41,7 +43,6 @@ class _SyTyFyEsePaperState extends State<SyTyFyEsePaper> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Scaffold(
-            backgroundColor: Colors.black,
             appBar: AppBar(
               title: const Center(
                 child: Text(
@@ -80,15 +81,19 @@ class _SyTyFyEsePaperState extends State<SyTyFyEsePaper> {
                         );
                       }));
                     },
-                    child: Card(
-                      color: const Color.fromARGB(255, 66, 90, 228),
+                    child: Container(
+                      height: 40,
+                      width: 250,
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 149, 223, 225),
+                          borderRadius: BorderRadius.circular(10)),
                       child: Center(
                         child: Text(
                           paperyearsy,
                           style: const TextStyle(
                               // color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 35),
+                              
+                              fontSize: 24),
                         ),
                       ),
                     ),

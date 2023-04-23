@@ -1,8 +1,6 @@
 // ignore: file_names
 // here we are viewing ese paper of first year
 
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +18,7 @@ class FyPaperEse extends StatefulWidget {
 
 class _FyPaperEseState extends State<FyPaperEse> {
   final gsReference = FirebaseStorage.instance;
-  List<String> pdfurl = [];
+  List<String> pdfurlese = [];
 
   @override
   Widget build(BuildContext context) {
@@ -35,31 +33,28 @@ class _FyPaperEseState extends State<FyPaperEse> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Scaffold(
-            backgroundColor: Colors.black,
             appBar: AppBar(
-              title: const Center(
-                child: Text(
-                  'ESE',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      fontStyle: FontStyle.italic),
+              centerTitle: true,
+              title: const Text(
+                'ESE',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 26,
                 ),
               ),
-           
             ),
             body: ListView.builder(
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                String a = snapshot.data!.docs[index].id;
+                String b = snapshot.data!.docs[index].id;
 
                 final esepaper =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;
 
-                String url = '${esepaper['url']}';
-                String paperyear = '${esepaper['year']}';
-                pdfurl.add(url);
+                String urlese = '${esepaper['url']}';
+                String paperyear = '  ${esepaper['year']}';
+                pdfurlese.add(urlese);
 
                 return Padding(
                   padding: const EdgeInsets.all(20),
@@ -68,19 +63,24 @@ class _FyPaperEseState extends State<FyPaperEse> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return ViewFyMst(
-                          pdfurl: pdfurl[index],
+                          pdfurl: pdfurlese[index],
                         );
                       }));
                     },
-                    child: Card(
-                      color: const Color.fromARGB(255, 66, 90, 228),
-                      child: Center(
+                    child: Container(
+                      height: 40,
+                      width: 250,
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 149, 223, 225),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Text(
                           paperyear,
                           style: const TextStyle(
                               // color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 35),
+
+                              fontSize: 24),
                         ),
                       ),
                     ),

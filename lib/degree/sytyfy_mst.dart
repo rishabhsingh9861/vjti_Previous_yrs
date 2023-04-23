@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/fy_ese.dart';
 import 'package:vjti_previous/degree/sytyfy_ese.dart';
 import 'package:vjti_previous/degree/viewfymst.dart';
 
@@ -26,7 +25,6 @@ class _SyTyFyMstPaperState extends State<SyTyFyMstPaper> {
 
   @override
   Widget build(BuildContext context) {
-
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('Degree')
@@ -42,7 +40,6 @@ class _SyTyFyMstPaperState extends State<SyTyFyMstPaper> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Scaffold(
-            backgroundColor: Colors.black,
             appBar: AppBar(
               title: const Center(
                 child: Text(
@@ -54,16 +51,20 @@ class _SyTyFyMstPaperState extends State<SyTyFyMstPaper> {
                 ),
               ),
               actions: [
+                const Icon(
+                  Icons.arrow_forward,
+                  size: 26,
+                ),
                 ElevatedButton(
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return SyTyFyEsePaper(
-                            yearsids: widget.yearids ,
-                            departsids: widget.departids ,
-                            semestids: widget.semestid ,
-                            subjectid: widget.subjecid ,
-                            );
+                          yearsids: widget.yearids,
+                          departsids: widget.departids,
+                          semestids: widget.semestid,
+                          subjectid: widget.subjecid,
+                        );
                       }));
                     },
                     child: const Text("ESE",
@@ -101,9 +102,14 @@ class _SyTyFyMstPaperState extends State<SyTyFyMstPaper> {
                         );
                       }));
                     },
-                    child: Card(
-                      color: const Color.fromARGB(255, 66, 90, 228),
-                      child: Center(
+                    child: Container(
+                      height: 40,
+                      width: 250,
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 149, 223, 225),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Text(
                           paperyearsy,
                           style: const TextStyle(
