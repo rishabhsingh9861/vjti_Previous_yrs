@@ -1,39 +1,44 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vjti_previous/degree/sytyfy_mst.dart';
+import 'package:vjti_previous/diploma/diploma_syfy_mst.dart';
 
-class Sem3Subject extends StatefulWidget {
-  const Sem3Subject(
-      {super.key, this.departId, this.yearIds, this.semIds, this.departname});
-  final String? departId; // contain department ids
-  final String? yearIds; // contains year ids
-  final String? semIds; // contin semester ids
-  final String? departname; // contain department name
+class DiplomaSem3Subject extends StatefulWidget {
+  const DiplomaSem3Subject(
+      {super.key,
+      this.diplomadepartId,
+      this.diplomayearIds,
+      this.diplomasemIds,
+      this.diplomadepartname});
+  final String? diplomadepartId; // contain department ids
+  final String? diplomayearIds; // contains year ids
+  final String? diplomasemIds; // contin semester ids
+  final String? diplomadepartname; // contain department name
 
   @override
-  State<Sem3Subject> createState() => _Sem3SubjectState();
+  State<DiplomaSem3Subject> createState() => _DiplomaSem3SubjectState();
 }
 
-class _Sem3SubjectState extends State<Sem3Subject> {
-  List<String> subjectssem3 = []; // contains sem 3 subject not an ids
-  List<String> subjectsem3ids = []; // contains sem3  subject ids
+class _DiplomaSem3SubjectState extends State<DiplomaSem3Subject> {
+  List<String> diplomasubjectssem3 = []; // contains sem 3 subject not an ids
+  List<String> diplomasubjectsem3ids = []; // contains sem3  subject ids
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-            .collection('Degree')
-            .doc(widget.yearIds)
+            .collection('Diploma')
+            .doc(widget.diplomayearIds)
             .collection('Departments')
-            .doc(widget.departId)
+            .doc(widget.diplomadepartId)
             .collection('Semesters')
-            .doc(widget.semIds)
+            .doc(widget.diplomasemIds)
             .collection('Subjects')
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
               appBar: AppBar(
-                title: Text('${widget.departname}' ,
+                title: Text('${widget.diplomadepartname}',
                     style: const TextStyle(
                       fontSize: 24,
                     )),
@@ -43,12 +48,12 @@ class _Sem3SubjectState extends State<Sem3Subject> {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     String subjectsem3id = snapshot.data!.docs[index].id;
-                    subjectsem3ids.add(subjectsem3id);
+                    diplomasubjectsem3ids.add(subjectsem3id);
 
-                    final subjectsem3 = snapshot.data!.docs[index].data()
+                    final diplomasubjectsem3 = snapshot.data!.docs[index].data()
                         as Map<String, dynamic>;
-                    String sub = '  ${subjectsem3['Subject']}';
-                    subjectssem3.add(sub);
+                    String sub = '  ${diplomasubjectsem3['Subject']}';
+                    diplomasubjectssem3.add(sub);
 
                     return Padding(
                       padding: const EdgeInsets.all(20),
@@ -56,11 +61,11 @@ class _Sem3SubjectState extends State<Sem3Subject> {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return SyTyFyMstPaper(
-                              yearids: widget.yearIds,
-                              departids: widget.departId,
-                              semestid: widget.semIds,
-                              subjecid: subjectsem3id,
+                            return DiplomaSyTyFyMstPaper(
+                              diplomayearids: widget.diplomayearIds,
+                              diplomadepartids: widget.diplomadepartId,
+                              diplomasemestid: widget.diplomasemIds,
+                              diplomasubjecid: subjectsem3id,
                             );
                           }));
                         },

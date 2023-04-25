@@ -1,22 +1,19 @@
-// ignore: file_names
-// here we are viewing ese paper of first year
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:vjti_previous/degree/viewfymst.dart';
 
-class FyPaperEse extends StatefulWidget {
-  const FyPaperEse({super.key, this.subid});
-  final String? subid;
+class DiplomaFyPaperEse extends StatefulWidget {
+  const DiplomaFyPaperEse({super.key, this.diplomasubid});
+  final String? diplomasubid;
   // final String? msturl;
   // final String? eseurl;
 
   @override
-  State<FyPaperEse> createState() => _FyPaperEseState();
+  State<DiplomaFyPaperEse> createState() => _DiplomaFyPaperEseState();
 }
 
-class _FyPaperEseState extends State<FyPaperEse> {
+class _DiplomaFyPaperEseState extends State<DiplomaFyPaperEse> {
   final gsReference = FirebaseStorage.instance;
   List<String> pdfurlese = [];
 
@@ -24,10 +21,10 @@ class _FyPaperEseState extends State<FyPaperEse> {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection('Degree')
+          .collection('Diploma')
           .doc('FirstYear')
           .collection('Subjects')
-          .doc(widget.subid)
+          .doc(widget.diplomasubid)
           .collection('ese')
           .snapshots(),
       builder: (context, snapshot) {
@@ -49,12 +46,12 @@ class _FyPaperEseState extends State<FyPaperEse> {
               itemBuilder: (context, index) {
                 String b = snapshot.data!.docs[index].id;
 
-                final esepaper =
+                final diplomaesepaper =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;
 
-                String urlese = '${esepaper['url']}';
-                String paperyear = '  ${esepaper['year']}';
-                pdfurlese.add(urlese);
+                String diplomaurlese = '${diplomaesepaper['url']}';
+                String diplomapaperyear = '  ${diplomaesepaper['year']}';
+                pdfurlese.add(diplomaurlese);
 
                 return Padding(
                   padding: const EdgeInsets.all(20),
@@ -68,34 +65,33 @@ class _FyPaperEseState extends State<FyPaperEse> {
                       }));
                     },
                     child: Container(
-                      height: 40,
-                      width: 250,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 149, 223, 225),
-                          borderRadius: BorderRadius.circular(10)),
-                      child:Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                           Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Text(
-                          paperyear,
-                          style: const TextStyle(
-                              // color: Colors.white,
+                        height: 40,
+                        width: 250,
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 149, 223, 225),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: Text(
+                                diplomapaperyear,
+                                style: const TextStyle(
+                                    // color: Colors.white,
 
-                              fontSize: 24),
-                        ),
-                      ),
-                       const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: Icon(
-                              Icons.picture_as_pdf,
-                              color: Color.fromARGB(255, 13, 9, 9),
+                                    fontSize: 24),
+                              ),
                             ),
-                          ),
-                        ],
-                      )
-                    ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Icon(
+                                Icons.picture_as_pdf,
+                                color: Color.fromARGB(255, 13, 9, 9),
+                              ),
+                            ),
+                          ],
+                        )),
                   ),
                 );
               },

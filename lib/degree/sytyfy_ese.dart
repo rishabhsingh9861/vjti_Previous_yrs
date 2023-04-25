@@ -44,14 +44,13 @@ class _SyTyFyEsePaperState extends State<SyTyFyEsePaper> {
         if (snapshot.hasData) {
           return Scaffold(
             appBar: AppBar(
-              title: const Center(
-                child: Text(
-                  'ESE',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      fontStyle: FontStyle.italic),
-                ),
+              centerTitle: true,
+              title: const Text(
+                'ESE',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    fontStyle: FontStyle.italic),
               ),
             ),
             body: ListView.builder(
@@ -82,21 +81,34 @@ class _SyTyFyEsePaperState extends State<SyTyFyEsePaper> {
                       }));
                     },
                     child: Container(
-                      height: 40,
-                      width: 250,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 149, 223, 225),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Center(
-                        child: Text(
-                          paperyearsy,
-                          style: const TextStyle(
-                              // color: Colors.white,
-                              
-                              fontSize: 24),
-                        ),
-                      ),
-                    ),
+                        height: 40,
+                        width: 250,
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 149, 223, 225),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                paperyearsy,
+                                style: const TextStyle(
+                                    // color: Colors.white,
+
+                                    fontSize: 24),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Icon(
+                                Icons.picture_as_pdf,
+                                color: Color.fromARGB(255, 13, 9, 9),
+                              ),
+                            ),
+                          ],
+                        )),
                   ),
                 );
               },

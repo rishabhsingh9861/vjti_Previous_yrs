@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:vjti_previous/home_page.dart';
 import 'package:vjti_previous/utilities/routes.dart';
 
 class Vjtilogin extends StatefulWidget {
@@ -25,10 +26,10 @@ class _VjtiloginState extends State<Vjtilogin> {
       idToken: gauth.idToken,
     );
 
-    return await FirebaseAuth.instance
+    return  FirebaseAuth.instance
         .signInWithCredential(credential)
         .then((value) {
-      Navigator.pushReplacementNamed(context, MyRoutes.homePage);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const homePage()));
     }).catchError((e) {
       showDialog(
           context: context,
@@ -38,6 +39,12 @@ class _VjtiloginState extends State<Vjtilogin> {
             );
           });
     });
+  }
+
+  @override
+  void dispose() {
+    signInWithGoogle();
+    super.dispose();
   }
 
   @override

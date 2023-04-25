@@ -158,3 +158,31 @@
 //     );
 //   }
 // }
+
+
+
+  // Dio dio = Dio();
+  // double progress = 0;
+  // void downloading() async {
+  //   String filename = widget.paperyear.toString();
+  //   String path = await _getFilePath(filename);
+  //   print(path);
+  //   await dio.download(widget.pdfurl.toString(), path,
+  //       onReceiveProgress: (count, total) {
+  //     setState(() {
+  //       progress = count / total;
+  //     });
+  //     print(progress);
+  //   }, deleteOnError: true);
+  // }
+
+  // Future<String> _getFilePath(String filename) async {
+  //   final dir = await getApplicationDocumentsDirectory();
+  //   return "${dir?.path}/$filename paper";
+  // }
+
+  // @override
+  // void initState() {
+  //   downloading();
+  //   super.initState();
+  // }

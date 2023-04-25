@@ -4,22 +4,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vjti_previous/degree/sytyfy_ese.dart';
 import 'package:vjti_previous/degree/viewfymst.dart';
+import 'package:vjti_previous/diploma/diploma_syfy_ese.dart';
 
-class SyTyFyMstPaper extends StatefulWidget {
-  const SyTyFyMstPaper(
-      {super.key, this.subjecid, this.yearids, this.departids, this.semestid});
-  final String? subjecid;
-  final String? yearids;
-  final String? departids;
-  final String? semestid;
+class DiplomaSyTyFyMstPaper extends StatefulWidget {
+  const DiplomaSyTyFyMstPaper(
+      {super.key,
+      this.diplomasubjecid,
+      this.diplomayearids,
+      this.diplomadepartids,
+      this.diplomasemestid});
+  final String? diplomasubjecid;
+  final String? diplomayearids;
+  final String? diplomadepartids;
+  final String? diplomasemestid;
   // final String? msturl;
   // final String? eseurl; /Degree/SecondYear/Departments/Cs/Semesters/sem3/Subjects/dbms/mst/dbms2
 
   @override
-  State<SyTyFyMstPaper> createState() => _SyTyFyMstPaperState();
+  State<DiplomaSyTyFyMstPaper> createState() => _DiplomaSyTyFyMstPaperState();
 }
 
-class _SyTyFyMstPaperState extends State<SyTyFyMstPaper> {
+class _DiplomaSyTyFyMstPaperState extends State<DiplomaSyTyFyMstPaper> {
   List<String> pdfurlsy = [];
   List<String> yearsy = [];
 
@@ -27,14 +32,14 @@ class _SyTyFyMstPaperState extends State<SyTyFyMstPaper> {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection('Degree')
-          .doc(widget.yearids)
+          .collection('Diploma')
+          .doc(widget.diplomayearids)
           .collection('Departments')
-          .doc(widget.departids)
+          .doc(widget.diplomadepartids)
           .collection('Semesters')
-          .doc(widget.semestid)
+          .doc(widget.diplomasemestid)
           .collection('Subjects')
-          .doc(widget.subjecid)
+          .doc(widget.diplomasubjecid)
           .collection('mst')
           .snapshots(),
       builder: (context, snapshot) {
@@ -58,11 +63,11 @@ class _SyTyFyMstPaperState extends State<SyTyFyMstPaper> {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return SyTyFyEsePaper(
-                          yearsids: widget.yearids,
-                          departsids: widget.departids,
-                          semestids: widget.semestid,
-                          subjectid: widget.subjecid,
+                        return DiplomaSyFyEsePaper(
+                                   diplomayearsids: widget.diplomayearids,
+                          diplomadepartsids: widget.diplomadepartids,
+                          diplomasemestids: widget.diplomasemestid,
+                          diplomasubjectid: widget.diplomasubjecid,
                         );
                       }));
                     },
@@ -81,13 +86,13 @@ class _SyTyFyMstPaperState extends State<SyTyFyMstPaper> {
                 String mstsyid =
                     snapshot.data!.docs[index].id; // sy ty fy ids here
 
-                final mstsy =
+                final diplomamstsy =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;
 
-                String urlsy = '${mstsy['url']}';
-                String paperyearsy = '${mstsy['year']}';
-                pdfurlsy.add(urlsy);
-                yearsy.add(paperyearsy);
+                String diplomaurlsy = '${diplomamstsy['url']}';
+                String diplomapaperyearsy = '${diplomamstsy['year']}';
+                pdfurlsy.add(diplomaurlsy);
+                yearsy.add(diplomapaperyearsy);
 
                 return Padding(
                   padding: const EdgeInsets.all(20),
@@ -116,7 +121,7 @@ class _SyTyFyMstPaperState extends State<SyTyFyMstPaper> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 child: Text(
-                                  paperyearsy,
+                                  diplomapaperyearsy,
                                   style: const TextStyle(
                                       // color: Colors.white,
 
