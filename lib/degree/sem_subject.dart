@@ -33,7 +33,7 @@ class _Sem3SubjectState extends State<Sem3Subject> {
           if (snapshot.hasData) {
             return Scaffold(
               appBar: AppBar(
-                title: Text('${widget.departname}' ,
+                title: Text('${widget.departname}',
                     style: const TextStyle(
                       fontSize: 24,
                     )),

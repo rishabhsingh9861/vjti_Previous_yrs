@@ -15,7 +15,7 @@ class DiplomaFyPaperEse extends StatefulWidget {
 
 class _DiplomaFyPaperEseState extends State<DiplomaFyPaperEse> {
   final gsReference = FirebaseStorage.instance;
-  List<String> pdfurlese = [];
+  List<String> diplomapdfurlese = [];
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _DiplomaFyPaperEseState extends State<DiplomaFyPaperEse> {
 
                 String diplomaurlese = '${diplomaesepaper['url']}';
                 String diplomapaperyear = '  ${diplomaesepaper['year']}';
-                pdfurlese.add(diplomaurlese);
+                diplomapdfurlese.add(diplomaurlese);
 
                 return Padding(
                   padding: const EdgeInsets.all(20),
@@ -60,7 +60,8 @@ class _DiplomaFyPaperEseState extends State<DiplomaFyPaperEse> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return ViewFyMst(
-                          pdfurl: pdfurlese[index],
+                          pdfurl: diplomapdfurlese[index],
+                          paperyear: diplomapaperyear,
                         );
                       }));
                     },

@@ -50,7 +50,7 @@ class _SyTyFyEsePaperState extends State<SyTyFyEsePaper> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 30,
-                    fontStyle: FontStyle.italic),
+                    ),
               ),
             ),
             body: ListView.builder(

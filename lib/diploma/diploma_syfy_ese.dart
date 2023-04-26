@@ -48,9 +48,9 @@ class _DiplomaSyFyEsePaperState extends State<DiplomaSyFyEsePaper> {
               title: const Text(
                 'ESE',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    fontStyle: FontStyle.italic),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
               ),
             ),
             body: ListView.builder(

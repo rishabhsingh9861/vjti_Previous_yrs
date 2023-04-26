@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/sytyfy_ese.dart';
 import 'package:vjti_previous/degree/viewfymst.dart';
 import 'package:vjti_previous/diploma/diploma_syfy_ese.dart';
 
@@ -25,8 +24,8 @@ class DiplomaSyTyFyMstPaper extends StatefulWidget {
 }
 
 class _DiplomaSyTyFyMstPaperState extends State<DiplomaSyTyFyMstPaper> {
-  List<String> pdfurlsy = [];
-  List<String> yearsy = [];
+  List<String> diplomapdfurlsy = [];
+  List<String> diplomayearsy = [];
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +63,7 @@ class _DiplomaSyTyFyMstPaperState extends State<DiplomaSyTyFyMstPaper> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return DiplomaSyFyEsePaper(
-                                   diplomayearsids: widget.diplomayearids,
+                          diplomayearsids: widget.diplomayearids,
                           diplomadepartsids: widget.diplomadepartids,
                           diplomasemestids: widget.diplomasemestid,
                           diplomasubjectid: widget.diplomasubjecid,
@@ -83,7 +82,7 @@ class _DiplomaSyTyFyMstPaperState extends State<DiplomaSyTyFyMstPaper> {
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                String mstsyid =
+                String diplomamstsyid =
                     snapshot.data!.docs[index].id; // sy ty fy ids here
 
                 final diplomamstsy =
@@ -91,8 +90,8 @@ class _DiplomaSyTyFyMstPaperState extends State<DiplomaSyTyFyMstPaper> {
 
                 String diplomaurlsy = '${diplomamstsy['url']}';
                 String diplomapaperyearsy = '${diplomamstsy['year']}';
-                pdfurlsy.add(diplomaurlsy);
-                yearsy.add(diplomapaperyearsy);
+                diplomapdfurlsy.add(diplomaurlsy);
+                diplomayearsy.add(diplomapaperyearsy);
 
                 return Padding(
                   padding: const EdgeInsets.all(20),
@@ -101,8 +100,8 @@ class _DiplomaSyTyFyMstPaperState extends State<DiplomaSyTyFyMstPaper> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return ViewFyMst(
-                          pdfurl: pdfurlsy[index],
-                          paperyear: yearsy[index],
+                          pdfurl: diplomapdfurlsy[index],
+                          paperyear: diplomayearsy[index],
                         );
                       }));
                     },

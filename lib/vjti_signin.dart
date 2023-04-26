@@ -41,11 +41,6 @@ class _VjtiloginState extends State<Vjtilogin> {
     });
   }
 
-  @override
-  void dispose() {
-    signInWithGoogle();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

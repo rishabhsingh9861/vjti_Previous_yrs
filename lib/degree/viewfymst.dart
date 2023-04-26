@@ -13,6 +13,7 @@ class ViewFyMst extends StatefulWidget {
 }
 
 class _ViewFyMstState extends State<ViewFyMst> {
+  bool loading = false;
   PdfViewerController? _pdfViewerController;
   // Dio dio = Dio();
   // double progress = 0;
@@ -40,9 +41,6 @@ class _ViewFyMstState extends State<ViewFyMst> {
   //   super.initState();
   // }
 
-
- 
-
   @override
   Widget build(BuildContext context) {
     //  String downloadProgress = (progress * 100).toInt.toString();
@@ -57,8 +55,6 @@ class _ViewFyMstState extends State<ViewFyMst> {
             child: InkWell(
               onTap: () {
                 //  downloading();
-        
-            
               },
               child: const Icon(
                 Icons.download,
@@ -68,9 +64,11 @@ class _ViewFyMstState extends State<ViewFyMst> {
           ),
         ],
       ),
-      body: SfPdfViewer.network(widget.pdfurl.toString(),
-          controller: _pdfViewerController,
-          enableDocumentLinkAnnotation: false),
+      body: SfPdfViewer.network(
+        widget.pdfurl.toString(),
+        controller: _pdfViewerController,
+        enableDocumentLinkAnnotation: false,
+      ),
     );
   }
 }

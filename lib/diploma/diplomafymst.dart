@@ -70,13 +70,13 @@ class _DiplomaFyPaperState extends State<DiplomaFyPaper> {
               itemBuilder: (context, index) {
                 String a = snapshot.data!.docs[index].id;
 
-                final mstpaper =
+                final diplomamstpaper =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;
 
-                String url = '${mstpaper['url']}';
-                String paperyear = '  ${mstpaper['year']}';
-                diplomapdfurl.add(url);
-                diplomayear.add(paperyear);
+                String diplomaurl = '${diplomamstpaper['url']}';
+                String diplomapaperyear = '  ${diplomamstpaper['year']}';
+                diplomapdfurl.add(diplomaurl);
+                diplomayear.add(diplomapaperyear);
 
                 return Padding(
                   padding: const EdgeInsets.all(20),
@@ -102,7 +102,7 @@ class _DiplomaFyPaperState extends State<DiplomaFyPaper> {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 5),
                             child: Text(
-                              paperyear,
+                              diplomapaperyear,
                               style: const TextStyle(
                                   // color: Colors.white,
                                   // fontWeight: FontWeight.bold,

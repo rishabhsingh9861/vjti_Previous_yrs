@@ -14,7 +14,7 @@
   </intent>
 </queries>
    <application
-        android:label="vjti_previous"
+        android:label="Previous Years"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
