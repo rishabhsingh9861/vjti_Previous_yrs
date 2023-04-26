@@ -67,7 +67,6 @@ class _FyPaperState extends State<FyPaper> {
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                String a = snapshot.data!.docs[index].id;
 
                 final mstpaper =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;

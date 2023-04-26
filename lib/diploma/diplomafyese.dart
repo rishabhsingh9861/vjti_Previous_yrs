@@ -44,7 +44,6 @@ class _DiplomaFyPaperEseState extends State<DiplomaFyPaperEse> {
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                String b = snapshot.data!.docs[index].id;
 
                 final diplomaesepaper =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;

@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/sem_subject.dart';
 import 'package:vjti_previous/diploma/diplomasem_subject.dart';
 
 class DiplomaSyFySemester extends StatefulWidget {

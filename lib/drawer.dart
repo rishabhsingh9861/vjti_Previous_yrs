@@ -18,9 +18,9 @@ class _myDrawerState extends State<myDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-        child: SafeArea(
-      child: Container(
+    return SafeArea(
+      child: Drawer(
+          child: Container(
         color: const Color.fromARGB(255, 230, 243, 129),
         child: ListView(
           children: [
@@ -45,8 +45,8 @@ class _myDrawerState extends State<myDrawer> {
             ),
             ListTile(
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => const Developer()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const Developer()));
               },
               leading: Image.asset("assets/images/developer_icon.png"),
               title: const Text(
@@ -57,7 +57,7 @@ class _myDrawerState extends State<myDrawer> {
             )
           ],
         ),
-      ),
-    ));
+      )),
+    );
   }
 }

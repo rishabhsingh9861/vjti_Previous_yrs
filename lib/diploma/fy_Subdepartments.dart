@@ -1,9 +1,9 @@
-// ignore_for_file: camel_case_types, must_be_immutable
+
+
+// ignore_for_file: camel_case_types, file_names, must_be_immutable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/fy_mst.dart';
-import 'package:vjti_previous/degree/sytyfy_semester.dart';
 import 'package:vjti_previous/diploma/diplomafymst.dart';
 import 'package:vjti_previous/diploma/sytydiplomasemester.dart';
 

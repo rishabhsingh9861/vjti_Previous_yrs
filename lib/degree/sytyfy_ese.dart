@@ -57,8 +57,7 @@ class _SyTyFyEsePaperState extends State<SyTyFyEsePaper> {
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                String mstsyid =
-                    snapshot.data!.docs[index].id; // sy ty fy ids here
+
 
                 final mstsy =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;

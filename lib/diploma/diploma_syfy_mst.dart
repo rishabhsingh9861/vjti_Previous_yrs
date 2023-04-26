@@ -82,8 +82,7 @@ class _DiplomaSyTyFyMstPaperState extends State<DiplomaSyTyFyMstPaper> {
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                String diplomamstsyid =
-                    snapshot.data!.docs[index].id; // sy ty fy ids here
+// sy ty fy ids here
 
                 final diplomamstsy =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;

@@ -1,6 +1,10 @@
 // import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+// import 'dart:io';
 
+// import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+// import 'package:permission_handler/permission_handler.dart';
+// import 'package:path/path.dart' as Path;
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ViewFyMst extends StatefulWidget {
@@ -13,56 +17,98 @@ class ViewFyMst extends StatefulWidget {
 }
 
 class _ViewFyMstState extends State<ViewFyMst> {
-  bool loading = false;
-  PdfViewerController? _pdfViewerController;
-  // Dio dio = Dio();
+  // bool loading = false;
+  // bool downloading = false;
+  // bool fileExists = false;
   // double progress = 0;
-  // void downloading() async {
-  //   String filename = widget.paperyear.toString();
-  //   String path = await _getFilePath(filename);
-  //   print(path);
-  //   await dio.download(widget.pdfurl.toString(), path,
-  //       onReceiveProgress: (count, total) {
+  // bool isPermission = false;
+  PdfViewerController? _pdfViewerController;
+  // var checkAllPermission = CheckPermission();
+  // var getPathFile = DirectoryPath();
+  // String? filePath;
+  // String fileName = '';
+
+  // checkPermission() async {
+  //   var permission = await checkAllPermission.isstoragePermission();
+  //   if (permission) {
   //     setState(() {
-  //       progress = count / total;
+  //       isPermission = true;
   //     });
-  //     print(progress);
-  //   }, deleteOnError: true);
+  //   }
   // }
 
-  // Future<String> _getFilePath(String filename) async {
-  //   final dir = await getApplicationDocumentsDirectory();
-  //   return "${dir?.path}/$filename paper";
+  // checkFileExists() async {
+  //   var storePath = await getPathFile.getPath();
+  //   filePath = '$filePath/$fileName';
+  //   bool fileExistsCheck = await File(filePath!).exists();
+  //   setState(() {
+  //     fileExists = fileExistsCheck;
+  //   });
+  // }
+
+  // startDownloading() async {
+  //   try {
+  //     await Dio().download(
+  //       widget.pdfurl.toString(),
+  //       filePath.toString(),
+  //       onReceiveProgress: (count, total) {
+  //         setState(() {
+  //           progress = (count / total);
+  //           print(progress);
+  //         });
+  //       },
+  //     );
+  //     // setState(() {
+  //     //   downloading = false;
+  //     //   fileExists = true;
+  //     // });
+  //   } catch (e) {
+  //     showDialog(
+  //         context: context,
+  //         builder: (context) {
+  //           return AlertDialog(
+  //             content: Text(e.toString()),
+  //           );
+  //         });
+  //   }
   // }
 
   // @override
   // void initState() {
-  //   downloading();
+  //   checkPermission();
+  //   fileName = Path.basename(widget.paperyear.toString());
   //   super.initState();
   // }
 
   @override
   Widget build(BuildContext context) {
-    //  String downloadProgress = (progress * 100).toInt.toString();
-    //print(widget.paperyear);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.paperyear.toString()),
-        actions: [
-          //  Text(downloadProgress),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: InkWell(
-              onTap: () {
-                //  downloading();
-              },
-              child: const Icon(
-                Icons.download,
-                size: 35,
-              ),
-            ),
-          ),
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.symmetric(horizontal: 15),
+        //     child: InkWell(
+        //       onTap: () {
+        //         // if (isPermission = true) {
+        //         //   startDownloading();
+        //         // } else {
+        //         //   showDialog(
+        //         //       context: context,
+        //         //       builder: (context) {
+        //         //         return const AlertDialog(
+        //         //           content: Text("Permission Issue"),
+        //         //         );
+        //         //       });
+        //         // }
+        //       },
+        //       child: const Icon(
+        //         Icons.download,
+        //         size: 35,
+        //       ),
+        //     ),
+        //   ),
+        // ],
       ),
       body: SfPdfViewer.network(
         widget.pdfurl.toString(),
@@ -72,3 +118,42 @@ class _ViewFyMstState extends State<ViewFyMst> {
     );
   }
 }
+
+// Check permission
+
+// class CheckPermission {
+//   Future<bool> isstoragePermission() async {
+//     var isStorage = await Permission.storage.status;
+//     var isAccesLc = await Permission.accessMediaLocation.status;
+//     var isManagExt = await Permission.manageExternalStorage.status;
+//     if (!isStorage.isGranted || !isAccesLc.isGranted || !isManagExt.isGranted) {
+//       await Permission.storage.request();
+//       await Permission.accessMediaLocation.request();
+//       await Permission.manageExternalStorage.request();
+//       if (!isStorage.isGranted ||
+//           !isAccesLc.isGranted ||
+//           !isManagExt.isGranted) {
+//         return false;
+//       } else {
+//         return true;
+//       }
+//     } else {
+//       return true;
+//     }
+//   }
+// }
+
+// // Directory path
+
+// class DirectoryPath {
+//   getPath() async {
+//     final path = Directory(
+//         "/storage/emulated/0/Android/media/com.example.vjti_previous/files");
+//     if (await path.exists()) {
+//       return path.path;
+//     } else {
+//       path.create(recursive: false);
+//       return path.path;
+//     }
+//   }
+// }

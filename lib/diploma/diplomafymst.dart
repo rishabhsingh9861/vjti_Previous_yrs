@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vjti_previous/degree/fy_ese.dart';
 import 'package:vjti_previous/degree/viewfymst.dart';
 import 'package:vjti_previous/diploma/diplomafyese.dart';
 
@@ -68,7 +67,6 @@ class _DiplomaFyPaperState extends State<DiplomaFyPaper> {
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                String a = snapshot.data!.docs[index].id;
 
                 final diplomamstpaper =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;
