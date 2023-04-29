@@ -37,15 +37,24 @@ class _DeveloperState extends State<Developer> {
                 decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 218, 227, 246),
                     borderRadius: BorderRadius.circular(20)),
-                child: const Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text(
-                    'My name is Rishabh Singh, and I am an app developer currently pursuing a degree in Civil Engineering from VJTI College in India. While my background may seem unconventional, I have found that the intersection of technology and engineering is where my passions truly lie. '
-                    '                                                         '
-                    'I have always been fascinated by the power of technology and its ability to transform the world around us. As a developer, I am constantly seeking new and innovative ways to use technology to improve people\'s lives and make a positive impact on society. ',
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                ),
+                child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'My name is Rishabh Singh, and I am an app developer currently pursuing a degree in Civil Engineering from VJTI College in India. While my background may seem unconventional, I have found that the intersection of technology and engineering is where my passions truly lie. ',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'I have always been fascinated by the power of technology and its ability to transform the world around us. As a developer, I am constantly seeking new and innovative ways to use technology to improve people\'s lives and make a positive impact on society. ',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        )
+                      ],
+                    )),
               ),
               const SizedBox(
                 height: 10,
@@ -57,17 +66,8 @@ class _DeveloperState extends State<Developer> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    InkWell(
-                        onTap: () async {
-                          if (await launchUrlString(_url)) {
-                            await canLaunchUrlString(_url);
-                          }
-                        },
-                        child: Image.asset('assets/images/linkedin.png')),
-                    const SizedBox(
-                      width: 100,
-                    ),
                     InkWell(
                         onTap: () async {
                           final gmail = 'mailto:$_email';

@@ -17,7 +17,7 @@ class _onboardState extends State<onboard> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+      
         body: Column(
           children: [
             Padding(

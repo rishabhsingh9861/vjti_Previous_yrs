@@ -11,35 +11,56 @@ class Vjtilogin extends StatefulWidget {
 }
 
 class _VjtiloginState extends State<Vjtilogin> {
-  bool loading = false;
+  voidCallbackAction() {}
+ Future signInWithGoogle() async {
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+  await googleSignIn.signOut(); // clear authentication cache
 
-  Future<void> signInWithGoogle() async {
-    final GoogleSignInAccount? guser = await GoogleSignIn()
-        .signIn(); // begin the interactive the signin process
+  final GoogleSignInAccount? guser = await googleSignIn.signIn();
 
-    final GoogleSignInAuthentication gauth =
-        await guser!.authentication; // obtain authentication request
+  if (guser != null) {
+    final String email = guser.email;
+    if (email.endsWith('vjti.ac.in')) {
+      final GoogleSignInAuthentication gauth = await guser.authentication;
 
-    final credential = GoogleAuthProvider.credential(
-      accessToken: gauth.accessToken,
-      idToken: gauth.idToken,
-    );
+      final credential = GoogleAuthProvider.credential(
+        accessToken: gauth.accessToken,
+        idToken: gauth.idToken,
+      );
 
-    return  FirebaseAuth.instance
-        .signInWithCredential(credential)
-        .then((value) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const homePage()));
-    }).catchError((e) {
+      return FirebaseAuth.instance.signInWithCredential(credential).then((value) {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const homePage()));
+      }).catchError((e) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(e.message.toString()),
+              );
+            });
+      });
+    } else {
+      // ignore: use_build_context_synchronously
       showDialog(
           context: context,
           builder: (context) {
-            return AlertDialog(
-              content: Text(e.message.toString()),
+            return const AlertDialog(
+              content: Text("Please Select Vjti email id"),
             );
           });
-    });
+    }
   }
-
+  //  else  {
+  //   // ignore: use_build_context_synchronously
+  //   showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return const AlertDialog(
+  //           content: Text("Please Select email id"),
+  //         );
+  //       });
+  // }
+}
 
   @override
   Widget build(BuildContext context) {

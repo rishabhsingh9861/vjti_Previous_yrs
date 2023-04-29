@@ -15,7 +15,7 @@ class homePage extends StatefulWidget {
 
 class _homePageState extends State<homePage> {
   void signUserOut() async {
-   await  FirebaseAuth.instance.signOut().then((value) {
+     FirebaseAuth.instance.signOut().then((value) {
       Navigator.pushReplacementNamed(context, MyRoutes.onBoard);
     });
   }
